@@ -8,53 +8,39 @@
 
 
 // 建立express伺服器
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
 
 //引用line bot SDK
 var linebot = require("linebot");
 
 //用於辨識line channel的資訊
 var bot = linebot({
-    channelId: process.env.channelId,
-    channelSecret:process.env.channelSecret,
-    channelAccessToken: process.env.channelAccessToken,
+    channelId: "1657703022",
+    channelSecret: "3640ca327cd68c5e4489be11222b54f6",
+    channelAccessToken: "TlNOkgKBYKjOaB+jkQdhSQezvmp39hLuCxVxA9nodrl+BBZzrOlluHfEYPmWc0VYpbQ8Sr8d3pzZwyFJ1dxns8ozLUT5BMcAlWCUZLYZshx9mh9BB/g74NXJWAE8qSR10SY6AaMvCWqzWUyhIPlahAdB04t89/1O/w1cDnyilFU=",
 });
 
-const linebotParser = bot.parser();
+// const linebotParser = bot.parser();
 
 // 當有人傳訊息給Bot時
 bot.on("message",function(event){
-    //event.message.text是使用者傳給bot的訊息
+    // event.message.text是使用者傳給bot的訊息
+    // 使用event.reply(要回傳的訊息)方法可將訊息回傳給使用者
 
-    const introRegex = /你|誰|介紹|you|yourself|hello|你好|hi/gi;
-    const resumeRegex = /resume|履歷|cv/gi;
-    const blogRegex = /blog|部落格|文章/gi;
-
-    if(introRegex.test(userText)){
-        event.reply(
-            "你好，我是Tanya！"
-        );
-    } else if (resumeRegex.test(userText)){
-        event.reply(
-            "身為十年資歷的平面設計師，正努力轉職成網頁設計師+前端工程師中"
-        );
-    } else if (blogRegex.test(userText)){
-        event.reply(
-            "沒有部落格，換個關鍵字吧"
-        );
-    } else {
-        event.reply(
-            "不知道該問什麼嗎？歡迎透過以下的關鍵字與我互動！\n\n介紹/履歷/部落格"
-        );
-    }
+    // event.message.text是使用者傳給bot的訊息
+    // 準備要回傳的內容
+    var replyMsg = `Hello你剛才說的是:${event.message.text}`;
+    // 透過event.reply(要回傳的訊息)方法將訊息回傳給使用者
+    event.reply(replyMsg).then(function (data) {
+        // 當訊息成功回傳後的處理
+    }).catch(function (error) {
+        // 當訊息回傳失敗後的處理
+    });
 
 });
 
-//送出帶有line-bot需要資訊的post請求
-app.post("/",linebotParser);
-
-//啟動express server
-app.listen(process.env.PORT || 3000,()=>{
-    console.log("Express server start");
+// Bot所監聽的webhook路徑與port
+bot.listen('/linewebhook', 3000, function () {
+    console.log('[BOT已準備就緒]');
 });
