@@ -33,7 +33,7 @@ bot.on("message",function(event){
 
     if(introRegex.test(userText)){
         event.reply(
-            "你好，我是Tanya"
+            "你好，我是Tanya！"
         );
     } else if (resumeRegex.test(userText)){
         event.reply(

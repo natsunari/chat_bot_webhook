@@ -1,5 +1,5 @@
 {
-  "name": "chat_bot_webhook2",
+  "name": "exit",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,9 @@
     "url": "https://github.com/natsunari/chat_bot_webhook/issues"
   },
   "homepage": "https://github.com/natsunari/chat_bot_webhook#readme",
-  "dependencies": {},
+  "dependencies": {
+    "linebot": "^1.6.1"
+  },
   "devDependencies": {},
   "description": ""
 }
